@@ -1,0 +1,31 @@
+{
+  "name": "review-career-sim",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --watchAll --testEnvironment node",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dayrich96/review-career-sim.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dayrich96/review-career-sim/issues"
+  },
+  "homepage": "https://github.com/dayrich96/review-career-sim#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.1"
+  }
+}
