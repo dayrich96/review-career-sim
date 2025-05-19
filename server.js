@@ -1,38 +1,14 @@
 const express = require('express');
+const authRoutes = require('./auth'); // Import the auth.js router
 const { Client } = require('pg');
+
 const app = express();
-const port = 3000; 
+const port = 3000;
 
 app.use(express.json());
 
-const client = new Client({
-  user: 'postgres',
-  password: 'Richday@9675', 
-  host: 'localhost',
-  port: 5432,
-  database: 'Review_db'
-});
 
-client.connect((err) => {
-  if (err) {
-    console.error('Error connecting to PostgreSQL:', err);
-  } else {
-    console.log('Connected to PostgreSQL database using Client');
-  }
-});
-
-
-app.post('/api/auth/register', (req, res) => {
-    res.status(201).json({ message: 'User registration endpoint hit' });
-});
-
-app.post('/api/auth/login', (req, res) => {
-    res.status(200).json({ message: 'User login endpoint hit' });
-});
-
-app.get('/api/auth/me', (req, res) => {
-    res.status(401).json({ error: 'Not authenticated (placeholder)' });
-});
+app.use('/api/auth', authRoutes); 
 
 
 app.get('/api/items', (req, res) => {
@@ -91,6 +67,25 @@ app.delete('/api/users/:userId/comments/:commentId', (req, res) => {
 app.delete('/api/users/:userId/reviews/:reviewId', (req, res) => {
     const { userId, reviewId } = req.params;
     res.status(401).json({ error: `Authentication required to delete review ${reviewId} for user ${userId} (placeholder)` });
+});
+
+
+const dbConfig = {
+  user: 'postgres',
+  password: 'Richday@9675', 
+  host: 'localhost',
+  port: 5432,
+  database: 'Review_db'
+};
+
+const client = new Client(dbConfig);
+
+client.connect((err) => {
+  if (err) {
+    console.error('Error connecting to PostgreSQL:', err);
+  } else {
+    console.log('Connected to PostgreSQL database using Client');
+  }
 });
 
 
